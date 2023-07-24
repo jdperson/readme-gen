@@ -4,6 +4,7 @@ const inquirer = require("inquirer");
 async function main() {
     console.log("Welcome to README Generator!\n");
 
+    // Wait for user responses before generating README.md
     const info = await inquirer.prompt([
         {
             type: "input",
@@ -37,9 +38,9 @@ async function main() {
         },
         {
             type: "list",
-            name: "liscense",
-            message: "Choose a liscense:",
-            choices: ["MIT", "Apache-2.0", "GPL-3.0", "ISC", "Unliscense"]
+            name: "license",
+            message: "Choose a license:",
+            choices: ["MIT", "Apache-2.0", "GPL-3.0", "ISC", "Unlicense"]
         },
         {
             type: "input",
@@ -53,39 +54,56 @@ async function main() {
         }
     ]);
 
-    var content = `# ${info.title}
-![Liscense](https://img.shields.io/badge/Liscense-${encodeURIComponent(info.liscense)}-green)
+    const content = `# ${info.title}
+
+![License](https://img.shields.io/badge/License-${encodeURIComponent(info.license)}-green)
+
 
 ## Description
+
 ${info.description}
 
+
 ## Table of Contents
+
 - [Installation](#installation)
 - [Usage](#usage)
-- [Liscense](#liscense)
+- [License](#license)
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [Questions](#questions)
 
+
 ## Installation
+
 ${info.install}
 
+
 ## Usage
+
 ${info.usage}
 
-## Liscense
-This application is covered under the ${info.liscense} liscense.
+
+## License
+
+This application is covered under the ${info.license} license.
+
 
 ## Contributing
+
 ${info.contrib}
 
+
 ## Tests
+
 ${info.test}
 
-## Questions
-If you have any questions, you can find me on GitHub [here](https://github.com/${info.username})
-or by email at ${info.email}`
 
+## Questions
+
+If you have any questions, you can find me on GitHub [here](https://github.com/${info.username})
+or by email at ${info.email}
+`
 
     fs.writeFile("./output/README.md", content, (err) => {
         err ? console.log(err) : console.log("README.md written successfully")
