@@ -40,7 +40,7 @@ async function main() {
             type: "list",
             name: "license",
             message: "Choose a license:",
-            choices: ["MIT", "Apache-2.0", "GPL-3.0", "ISC", "Unlicense"]
+            choices: ["MIT", "Apache", "GPL", "ISC", "Unlicense"]
         },
         {
             type: "input",
